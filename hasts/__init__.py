@@ -65,7 +65,7 @@ def showRoom( room_uuid):
 @app.route( '/testcelery')
 def testCelery():
     result = add_together.delay( 23, 37)
-    return "Result is: %s" % ( str( result.wait), )
+    return "Result is: %s" % ( str( result.wait()), )
 
 ### CLASSES ###
 
