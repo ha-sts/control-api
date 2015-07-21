@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
 ### IMPORTS ###
-import uuid
-
 from celery import Celery
 
 ### GLOBALS ###

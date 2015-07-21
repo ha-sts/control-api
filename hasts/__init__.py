@@ -3,7 +3,7 @@
 ### IMPORTS ###
 import uuid
 
-from celerytasks import makeCelery
+from celerytasks import *
 
 from flask import Flask
 from flask import abort, render_template, url_for
@@ -19,12 +19,13 @@ rmqPort = '5672'
 rmqBrokerURL = 'amqp://%s:%s@%s:%s//' % ( rmqUser, rmqPass, rmqHost, rmqPort)
 app.config.update( CELERY_BROKER_URL = rmqBrokerURL,
                    CELERY_RESULT_BACKEND = rmqBrokerURL)
-celery = makeCelery( app)
+celery = celerytasks.makeCelery( app)
 
 ### FUNCTIONS ###
-@celery.task()
-def add_together( a, b):
-    return a + b
+#@celery.task()
+#def add_together( a, b):
+#    print "Result: %d" % ( int( a + b), )
+#    return a + b
 
 @app.route( '/')
 def helloWorld():
@@ -65,7 +66,7 @@ def showRoom( room_uuid):
 
 @app.route( '/testcelery')
 def testCelery():
-    result = add_together.delay( 23, 37)
+    result = celerytasks.add_together.delay( 23, 37)
     return "Result is: %s" % ( str( result.wait()), )
 
 ### CLASSES ###
