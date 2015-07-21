@@ -18,7 +18,8 @@ rmqPass = 'guest'
 rmqPort = '5672'
 rmqBrokerURL = 'amqp://%s:%s@%s:%s//' % ( rmqUser, rmqPass, rmqHost, rmqPort)
 app.config.update( CELERY_BROKER_URL = rmqBrokerURL,
-                   CELERY_RESULT_BACKEND = rmqBrokerURL)
+                   #CELERY_RESULT_BACKEND = rmqBrokerURL,
+                   CELERY_IGNORE_RESULT = True)
 celery = celerytasks.makeCelery( app)
 
 ### FUNCTIONS ###
@@ -67,7 +68,7 @@ def showRoom( room_uuid):
 @app.route( '/testcelery')
 def testCelery():
     result = celerytasks.add_together.delay( 23, 37)
-    return "Result is: %s" % ( str( result.wait()), )
+    return "Job submitted."
 
 ### CLASSES ###
 
