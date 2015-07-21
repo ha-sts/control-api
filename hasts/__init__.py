@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 
 ### IMPORTS ###
+import uuid
+
 from flask import Flask
+from flask import abort, render_template, url_for
 
 ### GLOBALS ###
 app = Flask( __name__)
@@ -17,20 +20,32 @@ def showDevices():
     """Display a list of devices."""
     return 'Device list'
 
-@app.route( '/devices/<device_id>')
-def showDevice( device_id):
+@app.route( '/devices/<device_uuid>')
+def showDevice( device_uuid):
     """Display information about a device in the system."""
-    return 'Device %s.' % ( str( device_id), )
+    deviceUUID = None
+    try:
+        deviceUUID = uuid.UUID( device_uuid)
+    except Exception as ex:
+        print ex
+        abort( 404)
+    return 'Device %s.' % ( str( deviceUUID), )
 
 @app.route( '/rooms/')
 def showRooms():
     """Display a list of rooms."""
     return 'Room list'
 
-@app.route( '/rooms/<room_id>')
-def showRoom( room_id):
+@app.route( '/rooms/<room_uuid>')
+def showRoom( room_uuid):
     """Display information about a room in the system."""
-    return 'Room %s.' % ( str( room_id), )
+    roomUUID = None
+    try:
+        roomUUID = uuid.UUID( room_uuid)
+    except Exception as ex:
+        print ex
+        abort( 404)
+    return 'Room %s.' % ( str( roomUUID), )
 
 ### CLASSES ###
 
