@@ -17,7 +17,8 @@ rmqUser = 'guest'
 rmqPass = 'guest'
 rmqPort = '5672'
 rmqBrokerURL = 'amqp://%s:%s@%s:%s//' % ( rmqUser, rmqPass, rmqHost, rmqPort)
-app.config.update( CELERY_BROKER_URL = rmqBrokerURL )
+app.config.update( CELERY_BROKER_URL = rmqBrokerURL,
+                   CELERY_RESULT_BACKEND = rmqBrokerURL)
 celery = makeCelery( app)
 
 ### FUNCTIONS ###
