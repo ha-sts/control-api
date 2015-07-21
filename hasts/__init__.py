@@ -40,7 +40,7 @@ def showDevice( device_uuid):
     except Exception as ex:
         print ex
         abort( 404)
-    return 'Device %s.' % ( str( deviceUUID), )
+    return "Device %s." % ( str( deviceUUID), )
 
 @app.route( '/rooms/')
 def showRooms():
@@ -56,7 +56,12 @@ def showRoom( room_uuid):
     except Exception as ex:
         print ex
         abort( 404)
-    return 'Room %s.' % ( str( roomUUID), )
+    return "Room %s." % ( str( roomUUID), )
+
+@app.route( '/testcelery')
+def testCelery():
+    result = add_together.delay( 23, 37)
+    return "Result is: %s" % ( str( result.wait), )
 
 ### CLASSES ###
 

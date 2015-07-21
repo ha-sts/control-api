@@ -20,6 +20,10 @@ def makeCelery( app):
     celery.Task = ContextTask
     return celery
 
+@celery.task()
+def add_together( a, b):
+    return a + b
+
 ### CLASSES ###
 
 ### MAIN ###
