@@ -20,7 +20,7 @@ def showDevices():
 @app.route( '/devices/<device_id>')
 def showDevice( device_id):
     """Display information about a device in the system."""
-    return 'Device %d.' % ( device_id, )
+    return 'Device %s.' % ( str( device_id), )
 
 @app.route( '/rooms/')
 def showRooms():
@@ -30,7 +30,7 @@ def showRooms():
 @app.route( '/rooms/<room_id>')
 def showRoom( room_id):
     """Display information about a room in the system."""
-    return 'Room %d.' % ( room_id, )
+    return 'Room %s.' % ( str( room_id), )
 
 ### CLASSES ###
 
