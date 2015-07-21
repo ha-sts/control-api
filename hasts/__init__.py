@@ -21,6 +21,10 @@ app.config.update( CELERY_BROKER_URL = rmqBrokerURL )
 celery = makeCelery( app)
 
 ### FUNCTIONS ###
+@celery.task()
+def add_together( a, b):
+    return a + b
+
 @app.route( '/')
 def helloWorld():
     """Display the index page.  This will eventually load a webapp that will access the APIs."""
