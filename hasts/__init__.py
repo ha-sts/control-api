@@ -13,7 +13,7 @@ def helloWorld():
     return 'Hello World!'
 
 @app.route( '/devices/')
-def showDevices();
+def showDevices():
     """Display a list of devices."""
     return 'Device list'
 
@@ -23,7 +23,7 @@ def showDevice( device_id):
     return 'Device %d.' % ( device_id, )
 
 @app.route( '/rooms/')
-def showRooms();
+def showRooms():
     """Display a list of rooms."""
     return 'Room list'
 
